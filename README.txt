@@ -28,10 +28,16 @@ Synthetic_LKDFBA:
 Contains MATLAB scripts for all synthetic systems.
 
 chass_LKDFBA:
-Contains MATLAB scripts for E. coli system.
+Contains MATLAB scripts for the E. coli system.
 
-costa_LKDFBA
-Contains MATLAB scripts for .
+costa_LKDFBA:
+Contains MATLAB scripts for the yeast system.
 
-libLKDFBA
+libLKDFBA:
 Directory containing the main LK-DFBA code. This directory must be on the MATLAB path for the scripts in the other directories to function.
+
+SyntheticModels_heatmaps.xlsx:
+Contains error data and heatmap figures found in the manuscript for the synthetic systems.
+
+BiologicalModels_heatmaps.xlsx:
+Contains error data and heatmap figures found in the manuscript for the E. coli and yeast systems.
