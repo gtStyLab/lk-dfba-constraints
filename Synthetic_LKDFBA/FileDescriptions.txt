@@ -1,0 +1,61 @@
+FOLDER DESCRIPTIONS:
+
+SyntheticModel
+Directory for generating noiseless and noisy data.
+
+results_split
+Directory containing fitted LK-DFBA models using noiseless data.
+
+results_split_noisy
+Directory containing fitted LK-DFBA models using noisy data.
+
+results_split_noisy_smooth
+Directory containing fitted LK-DFBA models using noisy smoothed data.
+
+results_split_predict
+Directory containing predictions made by fitted models in results_split.
+
+results_split_noisy_predict
+Directory containing predictions made by fitted models in results_split_noisy.
+
+results_split_noisy_smooth_predict
+Directory containing predictions made by fitted models in results_split_noisy_smooth.
+
+
+
+FILE DESCRIPTIONS:
+
+Synthetic_STM.mat
+Stoichiometric matrix of synthetic models
+
+Synthetic_results_split_error.mat
+Synthetic_errorall.mat
+Noiseless error information
+
+Synthetic_results_split_noisy_error.mat
+Synthetic_noisy_errorall_stdall*mat
+Noisy error information
+
+Synthetic_results_split_noisy_smooth_error.mat
+Synthetic_noisy_smooth_errorall_stdall*mat
+Noisy smoothed error information
+
+driver_SyntheticModel_LKDFBA.m
+Creates LK-DFBA models using data in SyntheticModel
+
+driver_calcError_Synthetic.m
+Calculates error between LK-DFBA predictions and ODE data
+
+driver_predict_Synthetic.m
+Makes predictions using fitted noiseless LK-DFBA models
+
+driver_predict_Synthetic_noisy.m
+Makes predictions using fitted noisy unsmoothed or smoothed LK-DFBA models
+
+
+
+USER GUIDE:
+1) In SyntheticModel, generate data using driver_genDatasetsSynthetic.m.
+2) To fit LK-DFBA models, use driver_SyntheticModel_LKDFBA.m. Results will be saved to results_split*
+3) Once LK-DFBA models have been created, use driver_predict_Synthetic.m to predict different metabolic phenotypes. Change the regName to choose which down/up regulation to use (leave blank for no regulation). Results will be saved to results_split*_predict
+4) Run driver_calcError_Synthetic.m to calculate errors between predictions and ODE data.
