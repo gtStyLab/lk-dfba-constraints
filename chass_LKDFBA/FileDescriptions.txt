@@ -1,0 +1,66 @@
+FOLDER DESCRIPTIONS:
+
+chassModel
+Directory for generating noiseless and noisy data.
+
+results_split
+Directory containing fitted LK-DFBA models using noiseless data.
+
+results_split_noisy
+Directory containing fitted LK-DFBA models using noisy data.
+
+results_split_newModel
+Directory containing fitted LK-DFBA models for the new models created using the E. coli model topology.
+
+results_split_predict
+Directory containing predictions made by fitted models in results_split.
+
+results_split_noisy_predict
+Directory containing predictions made by fitted models in results_split_noisy.
+
+results_split_newModel_predict
+Directory containing predictions made by fitted models in results_split_newModel.
+
+
+
+FILE DESCRIPTIONS:
+
+chassSTM.mat
+Stoichiometric matrix of E. coli model
+
+chass_results_split_error.mat
+chass_errorMatrix.mat
+Noiseless error information
+
+chass_results_split_noisy_error.mat
+chass_noisy_errorMatrix_stdMatrix*mat
+Noisy error information
+
+chass_results_split_newModel*error.mat
+chass_newModel*errorMatrix.mat
+New models with E. coli topology error information
+
+driver_chass_LKDFBA.m
+Creates LK-DFBA models using data in chassModel
+
+driver_calcError_chass.m
+driver_calcError_chass_newModel.m
+Calculates error between LK-DFBA predictions and ODE data
+
+driver_predict_chass.m
+driver_predict_chass_newModel.m
+Makes predictions using fitted noiseless LK-DFBA models
+
+driver_predict_chass_noisy.m
+Makes predictions using fitted noisy LK-DFBA models
+
+plot_fig5.m
+Plot Figure 5 in the manuscript
+
+
+
+USER GUIDE:
+1) In chassModel, generate data using driver_genDatasets_chassV.m.
+2) To fit LK-DFBA models, use driver_chass_LKDFBA.m. Results will be saved to results_split*
+3) Once LK-DFBA models have been created, use driver_predict_chass.m, driver_predict_chass_newModel.m, and driver_predict_chass_noisy.m to predict different metabolic phenotypes. Change the regName to choose which down/up regulation to use (leave blank for no regulation). Results will be saved to results_split*_predict
+4) Run driver_calcError_chass.m and driver_calcError_chass_newModel.m to calculate errors between predictions and ODE data.
