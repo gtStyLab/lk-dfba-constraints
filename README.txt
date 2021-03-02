@@ -2,7 +2,7 @@ OVERVIEW:
 This archive contains supplementary files to the manuscript, "Improved constraints increase the predictivity and applicability of a linear programming-based dynamic metabolic modeling framework" by Justin Lee and Mark Styczynski. The included code and data are those used to generate base ODE data, perform parameter fitting, predict different metabolic phenotypes, and produce data found in the manuscript. Updated versions of this code are hosted at https://github.com/gtStyLab/lk-dfba-constraints.
 
 Additional file descriptions are contained within each subdirectory.
-
+Data was generated using MATLAB 2018b, COPASI 4.24 (Build 197), and Gurobi 8.1.0.
 
 
 
