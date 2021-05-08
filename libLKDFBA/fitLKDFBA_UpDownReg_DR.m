@@ -162,6 +162,7 @@ function [optimalParams,solverStatus,solverPopulation,coeff,modelStruct] = fitLK
     end
     numUniq = length(uniqIdx);
     
+    coeff = [];
     for idx = 1:length(dupIdx)
         sameFluxIdx = find([modelStruct.kineticsMap{:,2}] == fluxList(dupIdx(idx)));
         
