@@ -45,7 +45,7 @@ for KO = KO_idx
         ODEoriginal_concMatrix = ODEoriginal.concMatrix;
         ODEoriginal_fluxMatrix = ODEoriginal.fluxMatrix;
         ODEpredict_concMatrix = ODEpredict.concMatrix;
-        ODEpredict_fluxMatrix = ODEpredict.fluxMatrix;
+        ODEpredict_fluxMatrix = ODEpredict.fluxMatrix;  
 
         flux_idx = [2 3 6 11 13 20 25 5 27 29 28 8 7 9]; % fluxes corresponding to names in T.Properties.RowNames
     
@@ -56,6 +56,15 @@ for KO = KO_idx
         NLRpredict_concMatrix = NLRpredict{i}.modelConcMatrix;
         NLRpredict_fluxMatrix = NLRpredict{i}.modelFluxMatrix;
 
+        % Combine forward and reverse fluxes in LK-DFBA predictions
+        % according to fluxNames in modelStruct from
+        % 'chassV_k-01_hiRes_fbaRegressionParams.mat' file after running
+        % LK-DFBA.
+        NLRoriginal_fluxMatrix(:,[3 4 7 8 9 11 12 13 16 18 19 28 29]) = NLRoriginal_fluxMatrix(:,[3 4 7 8 9 11 12 13 16 18 19 28 29]) - NLRoriginal_fluxMatrix(:,[49:61]);
+        NLRoriginal_fluxMatrix(:,[49:61]) = [];
+        NLRpredict_fluxMatrix(:,[3 4 7 8 9 11 12 13 16 18 19 28 29]) = NLRpredict_fluxMatrix(:,[3 4 7 8 9 11 12 13 16 18 19 28 29]) - NLRpredict_fluxMatrix(:,[49:61]);
+        NLRpredict_fluxMatrix(:,[49:61]) = [];
+        
         count = 1;
         for flux = flux_idx
             avgFlux_NLRoriginal(count,1) = mean(NLRoriginal_fluxMatrix(:,flux));
