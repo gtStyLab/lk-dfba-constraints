@@ -54,7 +54,8 @@ function wrapper_fitCostaNoiselessSplit(fileName,fitStringList)
     setLkdfbaParamsCosta;
     
     % Overwrite the FBA objective according to our setting
-    modelStruct.objectiveFluxIndex = [26];
+    %modelStruct.objectiveFluxIndex = [9]; % Default, Lactate only
+    modelStruct.objectiveFluxIndex = [9 11 12 14 15 19 21]; % All effluxes
     
     % Script to initialize other default fitting parameter
     if strcmp(fitStringList,'HP')

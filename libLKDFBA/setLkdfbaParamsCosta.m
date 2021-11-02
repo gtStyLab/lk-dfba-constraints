@@ -76,7 +76,8 @@ modelStruct = addActivityConstraints(modelStruct);
 
 
 % objectiveFluxIndex is for instant objective function
-modelStruct.objectiveFluxIndex = [9]; % Default
+%modelStruct.objectiveFluxIndex = [9]; % Default, Lactate only
+modelStruct.objectiveFluxIndex = [9 11 12 14 15 19 21]; % All effluxes
 
 % objectiveMetaboliteIndex is for terminal objective for pooling objective
 modelStruct.objectiveMetaboliteIndex = [];
