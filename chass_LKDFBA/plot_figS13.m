@@ -34,11 +34,11 @@ for KO = KO_idx
     
     % Gather LKDFBA_NLR data
     for i = 1:10
-        NLRoriginal{i} = load(sprintf('results_split_noisy_predict/chassV_k-01_nT-015_cov-15_rep-%03d_fbaRegressionParams_NLR_predict.mat',i));
-        NLRpredict{i} = load(sprintf('results_split_noisy_predict/chassV_k-01_nT-015_cov-15_rep-%03d_fbaRegressionParams_NLR_%s_predict.mat',i,KO{:}));
+        NLRoriginal{i} = load(sprintf('results_split_noisy_predict/chassV_k-01_nT-015_cov-15_rep-%03d_fbaRegressionParams_NLR_SS_predict.mat',i));
+        NLRpredict{i} = load(sprintf('results_split_noisy_predict/chassV_k-01_nT-015_cov-15_rep-%03d_fbaRegressionParams_NLR_%s_SS_predict.mat',i,KO{:}));
     
-        ODEoriginal = load('chassV_k-01_hiRes.mat');
-        ODEpredict = load(sprintf('chassV_k-01_%s_hiRes.mat',KO{:}));
+        ODEoriginal = load('chassV_k-01_SS_hiRes.mat');
+        ODEpredict = load(sprintf('chassV_k-01_%s_SS_hiRes.mat',KO{:}));
 
         ODE_timeVec = ODEoriginal.timeVec;
         ODE_fluxTimeVec = ODEoriginal.fluxTimeVec;
@@ -67,20 +67,26 @@ for KO = KO_idx
         
         count = 1;
         for flux = flux_idx
-            avgFlux_NLRoriginal(count,1) = mean(NLRoriginal_fluxMatrix(:,flux));
-            avgFlux_NLRpredict(count,1) = mean(NLRpredict_fluxMatrix(:,flux));
-            avgFlux_ODEoriginal(count,1) = mean(ODEoriginal_fluxMatrix(:,flux));
-            avgFlux_ODEpredict(count,1) = mean(ODEpredict_fluxMatrix(:,flux));
+            %avgFlux_NLRoriginal(count,1) = mean(NLRoriginal_fluxMatrix(:,flux));
+            %avgFlux_NLRpredict(count,1) = mean(NLRpredict_fluxMatrix(:,flux));
+            %avgFlux_ODEoriginal(count,1) = mean(ODEoriginal_fluxMatrix(:,flux));
+            %avgFlux_ODEpredict(count,1) = mean(ODEpredict_fluxMatrix(:,flux));
+            SSFlux_NLRoriginal(count,1) = NLRoriginal_fluxMatrix(end,flux);
+            SSFlux_NLRpredict(count,1) = NLRpredict_fluxMatrix(end,flux);
+            SSFlux_ODEoriginal(count,1) = ODEoriginal_fluxMatrix(end,flux);
+            SSFlux_ODEpredict(count,1) = ODEpredict_fluxMatrix(end,flux);
             count = count+1;
         end
     
         KO_ishii = T.(KO_count);
-        KO_NLR = avgFlux_NLRpredict;
-        KO_ODE = avgFlux_ODEpredict;
+        %KO_NLR = avgFlux_NLRpredict;
+        %KO_ODE = avgFlux_ODEpredict;
+        KO_NLR = SSFlux_NLRpredict;
+        KO_ODE = SSFlux_ODEpredict;
         
         % Calculate correlations
-        LKDFBA_correlation_WT(i) = corr(T.WT,avgFlux_NLRoriginal,'rows','complete');
-        ODE_correlation_WT(i) = corr(T.WT,avgFlux_ODEoriginal,'rows','complete');
+        LKDFBA_correlation_WT(i) = corr(T.WT,SSFlux_NLRoriginal,'rows','complete');
+        ODE_correlation_WT(i) = corr(T.WT,SSFlux_ODEoriginal,'rows','complete');
         
         LKDFBA_correlation_cell{KO_count-1,1} = KO{:};
         LKDFBA_correlation_cell{end,i+1} = corr(KO_ishii,KO_NLR,'rows','complete');
