@@ -68,7 +68,8 @@ for k = 1:length(fileNameList)
         % Load in data files
         data = load(fileName);
         data.nTFit = 50;
-        data.modelStruct.objectiveFluxIndex = 9;
+        data.modelStruct.objectiveFluxIndex = 9; % Lactate only
+        %data.modelStruct.objectiveFluxIndex = [9 11 12 14 15 19 21]; % All effluxes
         data.modelStruct.l2Weight = 0;
         
         errorCheck = false;
