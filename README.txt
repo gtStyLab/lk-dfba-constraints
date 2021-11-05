@@ -41,3 +41,6 @@ Contains error data and heatmap figures found in the manuscript for the syntheti
 
 BiologicalModels_heatmaps.xlsx:
 Contains error data and heatmap figures found in the manuscript for the E. coli and yeast systems.
+
+ecoli_parameters.xlsx:
+Contains E. coli parameters used.
