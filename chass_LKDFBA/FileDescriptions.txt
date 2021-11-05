@@ -57,6 +57,8 @@ Makes predictions using fitted noisy LK-DFBA models
 plot_fig5.m
 Plot Figure 5 in the manuscript
 
+plot_figS13.m
+Plot Figure S13 in the manuscript
 
 
 USER GUIDE:
